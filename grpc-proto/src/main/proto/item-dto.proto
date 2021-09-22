@@ -1,0 +1,27 @@
+syntax = "proto3";
+
+option java_package = "com.github.marlonflorencio.grpcserver.proto";
+option java_multiple_files = true;
+
+import "common.proto";
+import "google/protobuf/timestamp.proto";
+
+message ItemDTO {
+    string id = 1;
+    string title = 2;
+    string description = 3;
+    DecimalValue price = 4;
+    int64 quantity = 5;
+    repeated string categories = 6;
+    google.protobuf.Timestamp createdAt = 7;
+}
+
+message ItemId {
+    string item_id = 1;
+}
+
+service ItemService {
+    rpc CreateItem(ItemDTO) returns (ItemDTO){};
+    rpc GetItem(ItemId) returns (ItemDTO){};
+    rpc GetItems(ItemId) returns (stream ItemDTO) {};
+}

@@ -1,0 +1,5 @@
+rootProject.name = 'grpc-spring-boot'
+include 'grpc-basic'
+include 'grpc-server'
+include 'grpc-client'
+include 'grpc-proto'

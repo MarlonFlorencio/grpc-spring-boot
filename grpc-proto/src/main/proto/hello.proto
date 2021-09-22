@@ -1,0 +1,16 @@
+syntax = "proto3";
+
+option java_package = "com.github.marlonflorencio.grpcserver.proto";
+option java_multiple_files = true;
+
+message HelloRequest {
+    string name = 1;
+}
+
+message HelloResponse {
+    string result = 1;
+}
+
+service HelloService {
+    rpc SayHello(HelloRequest) returns (HelloResponse){};
+}

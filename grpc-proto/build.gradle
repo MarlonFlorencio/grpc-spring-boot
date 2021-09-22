@@ -1,0 +1,36 @@
+plugins {
+	id 'java'
+	id 'com.google.protobuf' version '0.8.17'
+	id 'idea'
+}
+
+group = 'com.github.marlonflorencio'
+version = '0.0.1-SNAPSHOT'
+sourceCompatibility = '11'
+
+repositories {
+	mavenCentral()
+}
+
+dependencies {
+	implementation 'io.grpc:grpc-protobuf:1.37.0'
+	implementation 'io.grpc:grpc-stub:1.37.0'
+	implementation 'io.grpc:grpc-services:1.37.0'
+	compileOnly 'org.apache.tomcat:annotations-api:6.0.53'
+}
+
+protobuf {
+	protoc {
+		artifact = "com.google.protobuf:protoc:3.17.3"
+	}
+	plugins {
+		grpc {
+			artifact = 'io.grpc:protoc-gen-grpc-java:1.37.0'
+		}
+	}
+	generateProtoTasks {
+		all()*.plugins {
+			grpc {}
+		}
+	}
+}
